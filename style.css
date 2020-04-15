@@ -1,0 +1,193 @@
+/*Itens Gerais - Body, Header, Menu*/
+body, ul, li, p{
+    margin: 0px;
+    padding: 0px;
+    list-style:  none; /*Sem as bolinhas do link*/
+    font-size: 1.2rem;
+    font-family: Arial;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
+
+a {
+    text-decoration: none; /*Sem decorar o item ao passar o o mouse*/
+    color: white;
+}
+
+.header{
+    flex-wrap: wrap; /* Quando a tela for muito pequena os itens vao se encaixar abaixo um do outro*/
+    display: flex; /* MOdelo para flex ---> */
+    justify-content: space-between /*Espaco entre os dois conteiners */;
+    padding: 20px;
+    align-items: center;
+    background-color: black;
+}
+
+.menu{
+    display: flex;
+    padding: 10px;
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+.menu li a{
+    display: block; /*Cria um 'bloco', area de click */
+    padding: 10px;
+}
+
+.menu li a :hover{
+    background: goldenrod;
+}
+
+h2{
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* -- IMagens Responsivas (Aumentar somente ate 100% do meu container)*/
+
+img{
+    max-width: 100%; /*Se expandem ate o maximo de 100% delas*/
+    display: block; /* Defino uma area para cada uma */
+}
+
+
+
+/* Exemplo1 : Display Flex-BOX */
+
+.flexB {
+    display: flex; /*Cria uma area sequencial em uma direcao e obriga os elementos a ficarem na linha*/
+    flex-wrap:  wrap; /*Pode quebrar*/
+    max-width: 800px; /*tamanho max do container - alinhamento*/
+    margin: 0 auto; /*  alinhar ao centro  */
+}
+
+.flexB > div{ /* '>' Referencia para*/
+    flex: 1 1 200px; /*flex: 'expandir'  'ficar menor' 'base de tamanho x' */
+    margin: 10px;
+}
+
+
+
+/* Exemplo 2 - Grid Layout*/
+
+.grid1{
+    display: grid; /*Definindo o tipo de display para grid : 2 direçoes (linha e coluna)*/
+    
+    /*Definindo em quantos linhas e em quantas colunas : fr = unidade fracional dividindo 100% em 3 partes*/
+    grid-template-columns: 1fr 1fr 1fr;
+
+    /*Segurando o container para nao fugir do meio*/
+    max-width: 780px;
+    margin: 0 auto; /*Definindo os elem. no centro*/
+    grid-gap: 20px; /* Espacamento entre os elementos do grid - melhor doq o padding*/ 
+
+}
+
+/* --> Seletores de CSS */
+
+.grid1 > div:nth-child(n+4){ /*Apartir do 4 item etilizar todos os demaiss*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.grid1 > div.anuncio{
+    grid-column: 1; /*Em qual posicao do grid que eu quero q ele esteja*/
+    grid-row: 2 / 5; /* Quero que a linha va do 2 ('/' = ate ) 5  */
+    border-top: 10px solid tomato;
+    display: block;
+    
+}
+
+/* Para melhorar responsividade utilizar uma midiaquery - a partir de tal tamanho fazer algo : */
+/* Criando Media Querys */
+@media(max-width: 600px){
+    .grid1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid1 > div:nth-child(n+4){
+        display: block;
+    }
+
+    .grid1 > div.anuncio{
+        grid-column: auto;
+        grid-row: auto;
+        order: -1;
+
+    }
+}
+
+
+/* Estilo - GRID 2*/
+
+.grid2{
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-gap: 20px;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.sidebar > div{
+    margin-bottom: 10px;
+}
+
+
+@media(max-width: 600px){
+    .grid2{
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar{
+        display: flex;
+        overflow: scroll;
+    }
+
+    .sidebar > div{
+        flex: 1 0 200px;
+        margin: 0 auto;
+    }
+}
+
+/* Grid 3 -  Estilizaçao*/
+
+.grid3{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  
+    grid-gap: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 10px;
+}
+
+.grid3-item:nth-child(1){
+    grid-row: 1 / 3;
+}
+
+.grid3-item{
+    display: grid;
+}
+
+.grid3-item img{
+    grid-column: 1;
+    grid-row: 1/3;
+    align-self: end;
+}
+
+.grid3-item p{
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+}
